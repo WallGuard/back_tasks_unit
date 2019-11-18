@@ -25,11 +25,12 @@ test_list = [
 ];
 
 function task1_test(arr) {
-    if (arr.indexOf(pick(arr)) !== -1) { return true } 
+    if (arr.indexOf(pick(arr)) !== -1) { return true }
+    else {return false}
 }
 
 function task2_test(arr, catVar) {
-    if (arr.indexOf(catVar !== 1)) {
+    if (arr.indexOf(catVar) !== -1) {
         return true
     }
 }
@@ -44,11 +45,11 @@ describe('catFactory', () => {
     const catFac = catFactory(test_db)
 
     it('catFactory should return obj with default props', () => {
-        assert.equal(task2_test(test_db.name, catFac.name), true);
-        assert.equal(task2_test(test_db.name, catFac.age), true);
-        assert.equal(task2_test(test_db.name, catFac.gender), true);
-        assert.equal(task2_test(test_db.name, catFac.legsCount), true);
-        assert.equal(task2_test(test_db.name, catFac.tailLength), true);
+        assert.equal(task2_test(test_db.name, catFac.name), true), 'error name';
+        assert.equal(task2_test(test_db.age, catFac.age), true, 'error age');
+        assert.equal(task2_test(test_db.gender, catFac.gender), true, 'error gender');
+        assert.equal(task2_test(test_db.legsCount, catFac.legsCount), true, 'error legs');
+        assert.equal(task2_test(test_db.tailLength, catFac.tailLength), true, 'error tail');
     })
 })
 
@@ -166,13 +167,36 @@ describe('nameStat', () => {
 })
 
 describe('catFactory_2', () => {
-    const catFac = catFactory(test_db)
+    /*
+    function task6_test(defaults) {
+        let a = Object.entries(catFactory_2(test_db, defaults));
+        let b = Object.entries(defaults);
 
-    it('catFactory_2 should return something', () => {
-        assert.equal(task2_test(test_db.name, catFac.name), true);
-        assert.equal(task2_test(test_db.name, catFac.age), true);
-        assert.equal(task2_test(test_db.name, catFac.gender), true);
-        assert.equal(task2_test(test_db.name, catFac.legsCount), true);
-        assert.equal(task2_test(test_db.name, catFac.tailLength), true);
+        if ((a.indexOf(b)) === 1) {
+            return true
+        }
+        console.log(Object.entries(catFactory_2(test_db, defaults)))
+        console.log(Object.entries(defaults)[0])
+        console.log(catFactory_2(test_db, defaults))
+    }
+    */
+
+    function task6_test(defaults) {
+        return catFactory_2(test_db, defaults).gender === defaults.gender
+    }
+
+    it('_2 should return...', () => {
+        assert.equal(task6_test({gender: 'Male'}), true), 'error gender';
+        assert.equal(task6_test({gender: 'Male'}), true), 'error gender';
+        assert.equal(task6_test({gender: 'Male'}), true), 'error gender';
+    })
+
+    const catFac = catFactory(test_db)
+    it('catFactory should return obj with default props', () => {
+        assert.equal(task2_test(test_db.name, catFac.name), true), 'error name';
+        assert.equal(task2_test(test_db.age, catFac.age), true, 'error age');
+        assert.equal(task2_test(test_db.gender, catFac.gender), true, 'error gender');
+        assert.equal(task2_test(test_db.legsCount, catFac.legsCount), true, 'error legs');
+        assert.equal(task2_test(test_db.tailLength, catFac.tailLength), true, 'error tail');
     })
 })
