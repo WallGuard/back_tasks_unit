@@ -33,7 +33,7 @@ function catsGroupGenerate_Old(list, maxCount) {
     }
 
     for (let i = 0; i < list.length; i++) {
-        if (list[i].age === oldCat) {
+        if ((list[i].gender === 'Male') && (list[i].age === oldCat)) {
             listOfCats.push(list[i]);
             if (listOfCats.length > maxCount) {
                 break;
@@ -51,13 +51,13 @@ function catsGroupGenerate_Young(list, maxCount) {
     let youngCat = obj.age.length;
 
     for (let i = 0; i < list.length; i++) {
-        if (list[i].age < youngCat) {
+        if ((list[i].gender === 'Female') && list[i].age < youngCat) {
             youngCat = list[i].age;
         }
     }
 
     for (let i = 0; i < list.length; i++) {
-        if (list[i].age === youngCat) {
+        if ((list[i].gender === 'Female') && list[i].age === youngCat) {
             listOfCats.push(list[i]);
             if (listOfCats.length >= maxCount) {
                 break;
@@ -68,5 +68,3 @@ function catsGroupGenerate_Young(list, maxCount) {
     return listOfCats;
 }
 //console.log(catsGroupGenerate_Young(list, 10))
-
-module.exports.catsGroupGenerate_Gender = catsGroupGenerate_Gender

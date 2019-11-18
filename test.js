@@ -2,7 +2,6 @@ const obj = require('./js/database')
 const pick = require('./js/task1')
 const catFactory = require('./js/task2')
 const catsGroupGenerate = require('./js/task3')
-const cgg = require('./js/task4')
 const nameStat = require('./js/task5')
 const catFactory_2 = require('./js/task6')
 var assert = require('assert')
@@ -44,7 +43,7 @@ describe('pick', () => {
 describe('catFactory', () => {
     const catFac = catFactory(test_db)
 
-    it('catFactory should return obj with default props', () => {
+    it('catFactory возвращает объект с кошачьими свойствами', () => {
         assert.equal(task2_test(test_db.name, catFac.name), true), 'error name';
         assert.equal(task2_test(test_db.age, catFac.age), true, 'error age');
         assert.equal(task2_test(test_db.gender, catFac.gender), true, 'error gender');
@@ -54,7 +53,7 @@ describe('catFactory', () => {
 })
 
 describe('catsGroupGenerate', () => {
-    it('catsGroupGenerate should return arr of objects', () => {
+    it('catsGroupGenerate возвращает массивный кошатник', () => {
         function task3_test(number) {
             if (catsGroupGenerate(number).length === number) {
                 return true
@@ -65,17 +64,8 @@ describe('catsGroupGenerate', () => {
 })
 
 describe('catsGroupGenerate_Gender', () => {
-    it('catsGroupGenerate_gender should return arr of cat', () => {
+    it('catsGroupGenerate_gender однополых котов', () => {
 
-        function catsGroupGenerate_Gender(list) {
-            let listOfCats = [];
-            for (let i = 0; i < list.length; i++) {
-                if (list[i].gender === 'Male') {
-                    listOfCats.push(list[i]);
-                }
-            }
-            return listOfCats;
-        }
         function task4_test1() {
             return catsGroupGenerate_Gender(test_list).length
         }
@@ -85,68 +75,29 @@ describe('catsGroupGenerate_Gender', () => {
 })
 
 describe('catsGroupGenerate_Name', () => {
-    it('catsGroupGenerate_Name should return arr of cat"s name', () => {
-        function catsGroupGenerate_Name(list) {
-            let listOfCatsName = [];
-            for (let i = 0; i < list.length; i++) {
-                listOfCatsName.push(list[i].name);
-            }
-            return listOfCatsName;
-        }
+    it('catsGroupGenerate_Name возвращает список имен', () => {
 
         function task4_test2() {
             return catsGroupGenerate_Name(test_list).length
         }
+
         assert.equal(task4_test2(), 5);
     })
 })
 
 describe('catsGroupGenerate_Old', () => {
-    it('catsGroupGenerate_Old should return arr of the eldest cat', () => {
-
-        function catsGroupGenerate_Old(list, maxCount) {
-            let listOfCats = [];
-            let oldCat = obj.age[0];
-        
-            for (let i = 0; i < list.length; i++) {
-                if ((list[i].gender === 'Male') && (list[i].age > oldCat)) {
-                    oldCat = list[i].age;
-                }
-            }
+    it('catsGroupGenerate_Old возвращает облезлых кошаков', () => {
 
         function task4_test3() {
             return catsGroupGenerate_Old(test_list, 3).length
         }
+
         assert.equal(task4_test3(), 1);
-        }
     })
 })
 
 describe('catsGroupGenerate_Young', () => {
-    it('catsGroupGenerate_Young should return name of the youngest cat', () => {
-        
-        function catsGroupGenerate_Young(list, maxCount) {
-            let listOfCats = [];
-            let youngCat = obj.age.length;
-        
-            for (let i = 0; i < list.length; i++) {
-                if ((list[i].gender === 'Female') && (list[i].age < youngCat)) {
-                    youngCat = list[i].age;
-                }
-            }
-        
-            for (let i = 0; i < list.length; i++) {
-                if ((list[i].gender === 'Female') && (list[i].age === youngCat)) {
-                    listOfCats.push(list[i]);
-                    if (listOfCats.length >= maxCount) {
-                        break;
-                    }
-                }
-            }
-        
-            return listOfCats;
-        }
-
+    it('catsGroupGenerate_Young возвращает молодых кошаков', () => {
         function task4_test4() {
             return catsGroupGenerate_Young(test_list, 3).length
         }
@@ -157,7 +108,7 @@ describe('catsGroupGenerate_Young', () => {
 
 describe('nameStat', () => {
     let cats =[{name: 'name_1'}, {name: 'name_1'}, {name: 'name_1'}] 
-    it('nameStat should return names count', () => {
+    it('nameStat возвращает список по кол-ву имен', () => {
         function task5_test() {
             return Object.values(nameStat(cats))
         }
@@ -185,18 +136,76 @@ describe('catFactory_2', () => {
         return catFactory_2(test_db, defaults).gender === defaults.gender
     }
 
-    it('_2 should return...', () => {
+    it('catFactory-M тож самое что и catFactory только с ключом ', () => {
         assert.equal(task6_test({gender: 'Male'}), true), 'error gender';
         assert.equal(task6_test({gender: 'Male'}), true), 'error gender';
         assert.equal(task6_test({gender: 'Male'}), true), 'error gender';
-    })
-
-    const catFac = catFactory(test_db)
-    it('catFactory should return obj with default props', () => {
-        assert.equal(task2_test(test_db.name, catFac.name), true), 'error name';
-        assert.equal(task2_test(test_db.age, catFac.age), true, 'error age');
-        assert.equal(task2_test(test_db.gender, catFac.gender), true, 'error gender');
-        assert.equal(task2_test(test_db.legsCount, catFac.legsCount), true, 'error legs');
-        assert.equal(task2_test(test_db.tailLength, catFac.tailLength), true, 'error tail');
     })
 })
+
+
+
+
+
+
+function catsGroupGenerate_Gender(list) {
+    let listOfCats = [];
+    for (let i = 0; i < list.length; i++) {
+        if (list[i].gender === 'Male') {
+            listOfCats.push(list[i]);
+        }
+    }
+    return listOfCats;
+}
+
+function catsGroupGenerate_Name(list) {
+    let listOfCatsName = [];
+    for (let i = 0; i < list.length; i++) {
+        listOfCatsName.push(list[i].name);
+    }
+    return listOfCatsName;
+}
+
+function catsGroupGenerate_Old(list, maxCount) {
+    let listOfCats = [];
+    let oldCat = obj.age[0];
+
+    for (let i = 0; i < list.length; i++) {
+        if ((list[i].gender === 'Male') && (list[i].age > oldCat)) {
+            oldCat = list[i].age;
+        }
+    }
+
+    for (let i = 0; i < list.length; i++) {
+        if ((list[i].gender === 'Male') && (list[i].age === oldCat)) {
+            listOfCats.push(list[i]);
+            if (listOfCats.length > maxCount) {
+                break;
+            }
+        }
+    }
+
+    return listOfCats;
+}
+
+function catsGroupGenerate_Young(list, maxCount) {
+    let listOfCats = [];
+    let youngCat = obj.age.length;
+
+    for (let i = 0; i < list.length; i++) {
+        if ((list[i].gender === 'Female') && list[i].age < youngCat) {
+            youngCat = list[i].age;
+        }
+    }
+
+    for (let i = 0; i < list.length; i++) {
+        if ((list[i].gender === 'Female') && list[i].age === youngCat) {
+            listOfCats.push(list[i]);
+            if (listOfCats.length >= maxCount) {
+                break;
+            }
+        }
+    }
+
+    return listOfCats;
+}
