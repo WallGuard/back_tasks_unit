@@ -1,12 +1,12 @@
 const obj = require('./js/database')
-const pick = require('./js/task1.js');
-const catFactory = require('./js/task2.js');
-const catsGroupGenerate = require('./js/task3.js');
-//const pick2 = require('./js/task4.js');
-const nameStat = require('./js/task5.js');
-const catFactory2 = require('./js/task6.js');
-var assert = require('assert');
-require('babel-register');
+const pick = require('./js/task1')
+const catFactory = require('./js/task2')
+const catsGroupGenerate = require('./js/task3')
+const cgg = require('./js/task4')
+const nameStat = require('./js/task5')
+const catFactory_2 = require('./js/task6')
+var assert = require('assert')
+require('babel-register')
 
 const test_db = {
     name: ['name_1', 'name_2', 'name_3', 'name_4', 'name_5'],
@@ -15,6 +15,14 @@ const test_db = {
     legsCount: [1, 2, 3, 4, 5],
     tailLength: [1, 2, 3, 4, 5]
 };
+
+test_list = [
+    {gender: 'Male', age: 12},
+    {name: 'Natali', gender: 'Female', age: 8},
+    {gender: 'Male', age: 13},
+    {gender: 'Male', age: 8},
+    {name: 'Kate', gender: 'Female', age: 8}
+];
 
 function task1_test(arr) {
     if (arr.indexOf(pick(arr)) !== -1) { return true } 
@@ -54,54 +62,98 @@ describe('catsGroupGenerate', () => {
         assert.equal(task3_test(999), true);
     })
 })
-/*
+
 describe('catsGroupGenerate_Gender', () => {
-    it('carsGroupGenerate_gender should return arr of cat', () => {
-        let test = catsGroupGenerate_Gender([test_obj]);
-        assert.equal(test.name, test_obj.name);
-        assert.equal(test.age, test_obj.age);
-        assert.equal(test.gender, test_obj.gender);
-        assert.equal(test.legsCount, test_obj.legsCount);
-        assert.equal(test.tailLength, test_obj.tailLength);
+    it('catsGroupGenerate_gender should return arr of cat', () => {
+
+        function catsGroupGenerate_Gender(list) {
+            let listOfCats = [];
+            for (let i = 0; i < list.length; i++) {
+                if (list[i].gender === 'Male') {
+                    listOfCats.push(list[i]);
+                }
+            }
+            return listOfCats;
+        }
+        function task4_test1() {
+            return catsGroupGenerate_Gender(test_list).length
+        }
+
+        assert.equal(task4_test1(), 3);
     })
 })
 
 describe('catsGroupGenerate_Name', () => {
     it('catsGroupGenerate_Name should return arr of cat"s name', () => {
-        let test = catsGroupGenerate_Name([test_obj]);
-        assert.equal(test, test_obj.name);
+        function catsGroupGenerate_Name(list) {
+            let listOfCatsName = [];
+            for (let i = 0; i < list.length; i++) {
+                listOfCatsName.push(list[i].name);
+            }
+            return listOfCatsName;
+        }
+
+        function task4_test2() {
+            return catsGroupGenerate_Name(test_list).length
+        }
+        assert.equal(task4_test2(), 5);
     })
 })
 
 describe('catsGroupGenerate_Old', () => {
     it('catsGroupGenerate_Old should return arr of the eldest cat', () => {
-        let test = catsGroupGenerate_OldMan([test_obj], 1);
-        assert.equal(test.name, test_obj.name);
-        assert.equal(test.age, test_obj.age);
-        assert.equal(test.gender, test_obj.gender);
-        assert.equal(test.legsCount, test_obj.legsCount);
-        assert.equal(test.tailLength, test_obj.tailLength);
+
+        function catsGroupGenerate_Old(list, maxCount) {
+            let listOfCats = [];
+            let oldCat = obj.age[0];
+        
+            for (let i = 0; i < list.length; i++) {
+                if ((list[i].gender === 'Male') && (list[i].age > oldCat)) {
+                    oldCat = list[i].age;
+                }
+            }
+
+        function task4_test3() {
+            return catsGroupGenerate_Old(test_list, 3).length
+        }
+        assert.equal(task4_test3(), 1);
+        }
     })
 })
 
 describe('catsGroupGenerate_Young', () => {
     it('catsGroupGenerate_Young should return name of the youngest cat', () => {
-        let obj = {
-            name: 'Nast\'a',
-            age: 21,
-            gender: 'Male',
-            legsCount: 21,
-            tailLength: 21
-        };
-        let test = catsGroupGenerate_YoungGirlName([obj], 1);
-        assert.equal(test.name, obj.name);
-        assert.equal(test.age, obj.age);
-        assert.equal(test.gender, obj.gender);
-        assert.equal(test.legsCount, obj.legsCount);
-        assert.equal(test.tailLength, obj.tailLength);
+        
+        function catsGroupGenerate_Young(list, maxCount) {
+            let listOfCats = [];
+            let youngCat = obj.age.length;
+        
+            for (let i = 0; i < list.length; i++) {
+                if ((list[i].gender === 'Female') && (list[i].age < youngCat)) {
+                    youngCat = list[i].age;
+                }
+            }
+        
+            for (let i = 0; i < list.length; i++) {
+                if ((list[i].gender === 'Female') && (list[i].age === youngCat)) {
+                    listOfCats.push(list[i]);
+                    if (listOfCats.length >= maxCount) {
+                        break;
+                    }
+                }
+            }
+        
+            return listOfCats;
+        }
+
+        function task4_test4() {
+            return catsGroupGenerate_Young(test_list, 3).length
+        }
+
+        assert.equal(task4_test4(), 2);
     })
 })
-*/
+
 describe('nameStat', () => {
     let cats =[{name: 'name_1'}, {name: 'name_1'}, {name: 'name_1'}] 
     it('nameStat should return names count', () => {
@@ -110,5 +162,17 @@ describe('nameStat', () => {
         }
         
         assert.equal(task5_test(cats), 3);
+    })
+})
+
+describe('catFactory_2', () => {
+    const catFac = catFactory(test_db)
+
+    it('catFactory_2 should return something', () => {
+        assert.equal(task2_test(test_db.name, catFac.name), true);
+        assert.equal(task2_test(test_db.name, catFac.age), true);
+        assert.equal(task2_test(test_db.name, catFac.gender), true);
+        assert.equal(task2_test(test_db.name, catFac.legsCount), true);
+        assert.equal(task2_test(test_db.name, catFac.tailLength), true);
     })
 })

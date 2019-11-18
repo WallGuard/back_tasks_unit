@@ -68,3 +68,5 @@ function catsGroupGenerate_Young(list, maxCount) {
     return listOfCats;
 }
 //console.log(catsGroupGenerate_Young(list, 10))
+
+module.exports.catsGroupGenerate_Gender = catsGroupGenerate_Gender
