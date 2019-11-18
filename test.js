@@ -103,9 +103,12 @@ describe('catsGroupGenerate_Young', () => {
 })
 */
 describe('nameStat', () => {
-    let cats =[{name: 'name_1'}, {name: 'name_1'}] 
+    let cats =[{name: 'name_1'}, {name: 'name_1'}, {name: 'name_1'}] 
     it('nameStat should return names count', () => {
-        let test = nameStat(cats);
-        assert.equal(cats, 1);
+        function task5_test() {
+            return Object.values(nameStat(cats))
+        }
+        
+        assert.equal(task5_test(cats), 3);
     })
 })

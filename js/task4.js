@@ -25,8 +25,6 @@ function catsGroupGenerate_Name(list) {
 function catsGroupGenerate_Old(list, maxCount) {
     let listOfCats = [];
     let oldCat = obj.age[0];
-    // 1. выявить самый высокий age
-    // 2. выявить котов с таким же age
 
     for (let i = 0; i < list.length; i++) {
         if ((list[i].gender === 'Male') && (list[i].age > oldCat)) {
