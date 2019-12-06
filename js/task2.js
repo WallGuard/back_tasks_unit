@@ -2,9 +2,7 @@ const obj = require('./database')
 const pick = require('./task1.js');
 
 function catFactory(obj) {
-    let cat = new Object();
-
-    cat = {
+    let cat = {
         name: pick(obj.name),
         age: pick(obj.age),
         gender: pick(obj.gender),
@@ -13,6 +11,6 @@ function catFactory(obj) {
     }
     return cat;
 }
-module.exports = catFactory
-
 //console.log(catFactory(obj))
+
+module.exports = catFactory

@@ -3,22 +3,26 @@ const catsGroupGenerate = require('./task3.js')
 const list = catsGroupGenerate(999);
 
 function catsGroupGenerate_Gender(list) {
-    let listOfCats = [];
+ /*   let listOfCats = [];
     for (let i = 0; i < list.length; i++) {
         if (list[i].gender === 'Male') {
             listOfCats.push(list[i]);
         }
     }
     return listOfCats;
+*/
+return list.filter(cat => cat.gender === 'Male');
 }
 //console.log(catsGroupGenerate_Gender(list))
 
 function catsGroupGenerate_Name(list) {
-    let listOfCatsName = [];
+/*    let listOfCatsName = [];
     for (let i = 0; i < list.length; i++) {
         listOfCatsName.push(list[i].name);
     }
     return listOfCatsName;
+*/
+return list.map(cat => cat.name);
 }
 //console.log(catsGroupGenerate_Name(list))
 

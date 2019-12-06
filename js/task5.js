@@ -1,5 +1,5 @@
 const catsGroupGenerate = require('./task3')
-const list = catsGroupGenerate(99);
+const list = catsGroupGenerate(999);
 
 function nameStat(list) {
     let catName = {};

@@ -1,4 +1,3 @@
-const obj = require('./js/database')
 const pick = require('./js/task1')
 const catFactory = require('./js/task2')
 const catsGroupGenerate = require('./js/task3')
@@ -24,20 +23,11 @@ test_list = [
     {name: 'Kate', gender: 'Female', age: 8}
 ];
 
-function task1_test(arr) {
-    if (arr.indexOf(pick(arr)) !== -1) { return true }
-    else {return false}
-}
 
-function task2_test(arr, catVar) {
-    if (arr.indexOf(catVar) !== -1) {
-        return true
-    }
-}
 
 describe('pick', () => {
     it('pick возвращает рандомный элемент из тестового массива', () => {
-        assert.equal(task1_test(test_db.name), true, 'error');
+        assert.equal(test_db.name.indexOf(pick(test_db.name)) !== -1, true, 'error');
     })
 })
 
@@ -45,11 +35,11 @@ describe('catFactory', () => {
     const catFac = catFactory(test_db)
 
     it('catFactory возвращает объект с кошачьими свойствами', () => {
-        assert.equal(task2_test(test_db.name, catFac.name), true), 'error name';
-        assert.equal(task2_test(test_db.age, catFac.age), true, 'error age');
-        assert.equal(task2_test(test_db.gender, catFac.gender), true, 'error gender');
-        assert.equal(task2_test(test_db.legsCount, catFac.legsCount), true, 'error legs');
-        assert.equal(task2_test(test_db.tailLength, catFac.tailLength), true, 'error tail');
+        assert.equal(test_db.name.indexOf(catFac.name) !== -1, true), 'error name';
+        assert.equal(test_db.age.indexOf(catFac.age) !== -1, true, 'error age');
+        assert.equal(test_db.gender.indexOf(catFac.gender) !== -1, true, 'error gender');
+        assert.equal(test_db.legsCount.indexOf(catFac.legsCount) !== -1, true, 'error legs');
+        assert.equal(test_db.tailLength.indexOf(catFac.tailLength) !== -1, true, 'error tail');
     })
 })
 
@@ -57,12 +47,12 @@ describe('catsGroupGenerate', () => {
     it('catsGroupGenerate возвращает массивный кошатник', () => {
    
         assert.equal(catsGroupGenerate(999).length === 999, true);
-        
+
     })
 })
 
 describe('catsGroupGenerate_Gender', () => {
-    it('catsGroupGenerate_gender однополых котов', () => {
+    it('catsGroupGenerate_gender возвращает однополых кошаков', () => {
         assert.equal(task4.catsGroupGenerate_Gender(test_list).length, 3);
     })
 })
@@ -92,25 +82,21 @@ describe('catsGroupGenerate_Young', () => {
 })
 
 describe('nameStat', () => {
-    let cats =[{name: 'name_1'}, {name: 'name_1'}, {name: 'name_1'}] 
+    const cats =[{name: 'name_1'}, {name: 'name_1'}, {name: 'name_1'}];
     it('nameStat возвращает список по кол-ву имен', () => {
-        function task5_test() {
-            return Object.values(nameStat(cats))
-        }
         
-        assert.equal(task5_test(cats), 3);
+        assert.equal(Object.values(nameStat(cats)), 3);
+
     })
 })
 
 describe('catFactory_2', () => {
-
-    function task6_test(defaults) {
-        return catFactory_2(test_db, defaults).gender === defaults.gender
-    }
+    const defaults = {gender: 'Male'}
 
     it('catFactory-M тож самое что и catFactory только с ключом ', () => {
-        assert.equal(task6_test({gender: 'Male'}), true), 'error gender';
-        assert.equal(task6_test({gender: 'Male'}), true), 'error gender';
-        assert.equal(task6_test({gender: 'Male'}), true), 'error gender';
+        assert.equal(catFactory_2(test_db, defaults).gender === defaults.gender, true), 'error gender';
+        assert.equal(catFactory_2(test_db, defaults).gender === defaults.gender, true), 'error gender';
+        assert.equal(catFactory_2(test_db, defaults).gender === defaults.gender, true), 'error gender';
     })
+
 })

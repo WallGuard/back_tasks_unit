@@ -8,6 +8,6 @@ function catsGroupGenerate(n) {
     }
     return listOfCats;
 }
+//console.log(catsGroupGenerate(-3))
 
 module.exports = catsGroupGenerate
-//console.log(catsGroupGenerate(-3))
