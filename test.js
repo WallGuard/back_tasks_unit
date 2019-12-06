@@ -13,7 +13,9 @@ const test_db = {
     age: [1, 2, 3, 4, 5],
     gender: ['Male', 'Female'],
     legsCount: [1, 2, 3, 4, 5],
-    tailLength: [1, 2, 3, 4, 5]
+    tailLength: [1, 2, 3, 4, 5],
+
+    loudness: [10, 20, 30, 40, 50, 60]
 };
 
 test_list = [

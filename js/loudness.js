@@ -7,7 +7,8 @@ function catFactory(obj) {
         age: pick(obj.age),
         gender: pick(obj.gender),
         legsCount: pick(obj.legsCount),
-        tailLength: pick(obj.tailLength)
+        tailLength: pick(obj.tailLength),
+        loudness: pick (obj.loudness)
     }
     return cat;
 }
