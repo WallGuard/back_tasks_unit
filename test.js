@@ -4,6 +4,7 @@ const catsGroupGenerate = require('./js/task3')
 const nameStat = require('./js/task5')
 const task4 = require('./js/task4')
 const catFactory_2 = require('./js/task6')
+const loudness = require('./loudness.js')
 var assert = require('assert')
 require('babel-register')
 
