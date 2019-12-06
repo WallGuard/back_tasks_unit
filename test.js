@@ -4,7 +4,7 @@ const catsGroupGenerate = require('./js/task3')
 const nameStat = require('./js/task5')
 const task4 = require('./js/task4')
 const catFactory_2 = require('./js/task6')
-const loudness = require('./loudness.js')
+const loudness = require('./js/loudness')
 var assert = require('assert')
 require('babel-register')
 
@@ -100,4 +100,17 @@ describe('catFactory_2', () => {
         assert.equal(catFactory_2(test_db, defaults).gender === defaults.gender, true), 'error gender';
     })
 
+})
+
+describe('loudness', () => {
+    const catFac = loudness(test_db)
+
+    it('catFactory возвращает объект с кошачьими свойствами', () => {
+        assert.equal(test_db.name.indexOf(catFac.name) !== -1, true), 'error name';
+        assert.equal(test_db.age.indexOf(catFac.age) !== -1, true, 'error age');
+        assert.equal(test_db.gender.indexOf(catFac.gender) !== -1, true, 'error gender');
+        assert.equal(test_db.legsCount.indexOf(catFac.legsCount) !== -1, true, 'error legs');
+        assert.equal(test_db.tailLength.indexOf(catFac.tailLength) !== -1, true, 'error tail');
+        assert.equal(test_db.loudness.indexOf(catFac.loudness) !== -1, true, 'error loudness');
+    })
 })
